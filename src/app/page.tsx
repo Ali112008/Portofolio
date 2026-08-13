@@ -27,6 +27,7 @@ import {
   CheckCircle2,
   Quote,
   Globe,
+  Award,
 } from "lucide-react";
 
 /* ───────── Data ───────── */
@@ -34,7 +35,7 @@ import {
 const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Work", href: "#projects" },
-  { label: "Process", href: "#process" },
+  { label: "Certs", href: "#certifications" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
@@ -122,26 +123,26 @@ const PROJECTS = [
 
 const EXPERIENCE = [
   {
-    role: "Frontend Developer",
+    role: "Front-End Developer",
     company: "Freelance — Khamsat",
-    period: "Mar 2023 — Present",
-    description: "Building production-grade web applications for clients across the MENA region and beyond. Verified seller with 100% completion rate, 17-minute avg response time, and a track record of repeat clients.",
-    highlights: ["15+ verified client reviews (all 5-star)", "100% order completion rate", "17-minute average response time", "Repeat clients across multiple projects"],
+    period: "Feb 2026 — Present",
+    description: "Architecting and deploying responsive landing pages and web applications that consistently achieve 90+ PageSpeed scores. Managing complete project lifecycle from technical planning to final deployment.",
+    highlights: ["5+ projects with 100% client satisfaction rate", "90+ Google PageSpeed scores consistently", "SEO & Accessibility as standard, not extra", "E-commerce storefront optimization & conversion"],
   },
   {
-    role: "Frontend Developer",
-    company: "WA TheQ Clinic",
-    period: "2025",
-    description: "Designed and developed a professional landing page for a hair transplant clinic with smooth animations, responsive design, and optimized conversion flows.",
-    highlights: ["Conversion-optimized landing page", "Performance-first architecture", "Responsive across all devices"],
+    role: "Front-End React Developer Trainee",
+    company: "Instant Software Solutions",
+    period: "Jan 2026 — Jul 2026",
+    description: "Intensive career-focused Front-End Diploma (130 hours). Mastered modern web technologies and real-world application architecture with a focus on scalable SPAs and e-commerce development.",
+    highlights: ["Built full E-Commerce platform as capstone project", "Redux Toolkit & Context API state management", "Pixel-perfect UI from Adobe XD wireframes", "RESTful API integration & async data handling"],
   },
 ];
 
 const STATS = [
-  { value: "2+", label: "Years Experience", icon: Briefcase },
+  { value: "800+", label: "Hours of Training", icon: Briefcase },
   { value: "15+", label: "Happy Clients", icon: Layers },
   { value: "100%", label: "Completion Rate", icon: Zap },
-  { value: "17m", label: "Avg Response Time", icon: Clock },
+  { value: "8", label: "Certifications", icon: Award },
 ];
 
 const PROCESS_STEPS = [
@@ -243,10 +244,69 @@ const TESTIMONIALS = [
 ];
 
 const WHY_ME = [
-  { icon: Zap, title: "Performance Obsessed", desc: "Every site scores 95+ on PageSpeed with Next.js 16 + Tailwind CSS. Because slow sites lose clients." },
-  { icon: Target, title: "AI Integration", desc: "Exceptional skill in integrating AI (Google Gemini) inside web apps for smart, modern experiences." },
-  { icon: Clock, title: "Deadline Driven", desc: "100% completion rate. 17-min avg response time. When I say Friday, I mean Friday." },
-  { icon: Shield, title: "RTL & Accessibility", desc: "Specialized in Arabic/English bilingual UIs with Dark/Light mode and full accessibility compliance." },
+  { icon: Zap, title: "Performance Obsessed", desc: "95%+ Lighthouse scores for SEO, performance & accessibility. Every site I ship is fast by default." },
+  { icon: Target, title: "10+ Projects Delivered", desc: "From landing pages to full E-commerce platforms with real-time state management and dynamic filtering." },
+  { icon: Clock, title: "800+ Hours Trained", desc: "Harvard CS50, 84hr React bootcamp, 42hr Node.js bootcamp, 130hr Front-End Diploma — and counting." },
+  { icon: Shield, title: "AI & Bilingual", desc: "Google Gemini AI integration + Arabic/English RTL UIs with Dark/Light mode and full accessibility." },
+];
+
+const CERTIFICATIONS = [
+  {
+    title: "CS50x — Introduction to Computer Science",
+    issuer: "Harvard University",
+    date: "2025",
+    image: "/certs/cs50x.png",
+    highlight: "10 problem sets + final project",
+  },
+  {
+    title: "The Ultimate React Course 2025",
+    issuer: "Udemy — Jonas Schmedtmann",
+    date: "Jul 2025",
+    image: "/certs/react-ultimate.jpg",
+    highlight: "84 hours",
+  },
+  {
+    title: "Node.js, Express, MongoDB Bootcamp",
+    issuer: "Udemy — Jonas Schmedtmann",
+    date: "Jul 2025",
+    image: "/certs/nodejs-bootcamp.jpg",
+    highlight: "42 hours",
+  },
+  {
+    title: "Front-End Diploma",
+    issuer: "Instant Software Solutions",
+    date: "May 2026",
+    image: "/certs/instant-frontend.jpg",
+    highlight: "130 hours",
+  },
+  {
+    title: "Responsive Web Design Certification",
+    issuer: "freeCodeCamp",
+    date: "May 2025",
+    image: "/certs/freecodecamp-rwd.jpg",
+    highlight: "~300 hours",
+  },
+  {
+    title: "Introduction to Modern AI",
+    issuer: "Cisco Networking Academy",
+    date: "Feb 2026",
+    image: "/certs/cisco-ai.jpg",
+    highlight: "AI & Machine Learning",
+  },
+  {
+    title: "CSS, Bootstrap, JS, PHP Full Stack",
+    issuer: "Udemy — PROPER DOT INSTITUTE",
+    date: "Jul 2025",
+    image: "/certs/html-css-js-php.jpg",
+    highlight: "Full Stack Crash Course",
+  },
+  {
+    title: "JavaScript Practicals Crash Course",
+    issuer: "Udemy — PROPER DOT INSTITUTE",
+    date: "Jul 2025",
+    image: "/certs/js-practicals.jpg",
+    highlight: "Hands-on JS Training",
+  },
 ];
 
 /* ───────── Animation Variants ───────── */
@@ -889,6 +949,67 @@ function CTASection() {
   );
 }
 
+function Certifications() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section className="section-padding">
+      <div className="max-w-6xl mx-auto">
+        <SectionHeading
+          label="Certifications"
+          title="Verified Credentials"
+          subtitle="800+ hours of structured learning from world-class institutions — not just tutorials, real computer science and engineering."
+        />
+
+        <motion.div
+          ref={ref}
+          variants={stagger}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        >
+          {CERTIFICATIONS.map((cert, i) => (
+            <motion.div
+              key={cert.title}
+              variants={fadeUp}
+              custom={i}
+              className="group relative rounded-xl border border-border bg-surface overflow-hidden hover:border-primary/30 transition-all duration-300"
+            >
+              {/* Certificate image preview */}
+              <div className="relative h-32 overflow-hidden bg-surface-light">
+                <Image
+                  src={cert.image}
+                  alt={cert.title}
+                  fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
+              </div>
+
+              <div className="p-4 space-y-2">
+                <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                  <Award className="w-3 h-3 text-primary" />
+                  <span>{cert.issuer}</span>
+                </div>
+                <h3 className="text-sm font-semibold leading-tight group-hover:text-primary transition-colors line-clamp-2">
+                  {cert.title}
+                </h3>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted font-mono">{cert.date}</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20">
+                    {cert.highlight}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -978,6 +1099,7 @@ export default function Home() {
         <Process />
         <Testimonials />
         <Experience />
+        <Certifications />
         <CTASection />
         <Contact />
       </main>
