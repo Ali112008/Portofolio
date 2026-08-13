@@ -40,9 +40,9 @@ const NAV_LINKS = [
 ];
 
 const SKILLS = {
-  "Frontend": ["React", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Framer Motion", "GSAP"],
-  "Backend": ["Node.js", "Prisma", "REST APIs", "Next.js API Routes"],
-  "Tools & Others": ["Git", "GitHub", "Vercel", "Figma", "VS Code", "Bun", "pnpm"],
+  "Frontend": ["React.js", "Next.js 16", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Shadcn/ui", "Framer Motion", "GSAP"],
+  "Backend & DB": ["Node.js", "Prisma ORM", "PostgreSQL", "REST APIs", "JWT Auth", "Next.js API Routes", "Context API", "Redux"],
+  "AI & Tools": ["Google Gemini AI", "Git/GitHub", "Vercel", "Figma (UI/UX)", "Axios", "Bun", "pnpm", "VS Code"],
 };
 
 const PROJECTS = [
@@ -123,10 +123,10 @@ const PROJECTS = [
 const EXPERIENCE = [
   {
     role: "Frontend Developer",
-    company: "Freelance",
-    period: "2024 — Present",
-    description: "Building production-grade web applications for clients across industries. Every project delivered on time, with performance scores that set the standard.",
-    highlights: ["8+ client projects delivered", "100/100 PageSpeed scores consistently", "SEO & Accessibility as standard, not extra"],
+    company: "Freelance — Khamsat",
+    period: "Mar 2023 — Present",
+    description: "Building production-grade web applications for clients across the MENA region and beyond. Verified seller with 100% completion rate, 17-minute avg response time, and a track record of repeat clients.",
+    highlights: ["15+ verified client reviews (all 5-star)", "100% order completion rate", "17-minute average response time", "Repeat clients across multiple projects"],
   },
   {
     role: "Frontend Developer",
@@ -139,9 +139,9 @@ const EXPERIENCE = [
 
 const STATS = [
   { value: "2+", label: "Years Experience", icon: Briefcase },
-  { value: "8+", label: "Projects Delivered", icon: Layers },
-  { value: "100", label: "PageSpeed Score", icon: Zap },
-  { value: "0", label: "Missed Deadlines", icon: Clock },
+  { value: "15+", label: "Happy Clients", icon: Layers },
+  { value: "100%", label: "Completion Rate", icon: Zap },
+  { value: "17m", label: "Avg Response Time", icon: Clock },
 ];
 
 const PROCESS_STEPS = [
@@ -169,39 +169,33 @@ const PROCESS_STEPS = [
 
 const TESTIMONIALS = [
   {
-    name: "Saleh A.",
+    name: "Alaa M.",
+    role: "Website Client — Khamsat",
+    text: "I thank Mr. Ali for the effort put into developing the website. The project was completed professionally, with excellent communication throughout. Feedback was implemented quickly and flexibly, with clear attention to detail and execution quality. The final result matched expectations in design and performance. I highly recommend him for anyone seeking a committed and professional developer.",
+    rating: 5,
+  },
+  {
+    name: "Bin Mohammed A.",
     role: "Landing Page Client — Khamsat",
-    text: "Very excellent work! Extremely fast response, fast delivery, and zero errors. Highly recommended for anyone who wants professional results.",
+    text: "I worked with several developers before — none were at the required level. Ali understood exactly what I needed, was patient and flexible despite my constant changes, and delivered a result I can confidently run ad campaigns on. I recommend him for: speed, cooperation & flexibility, and dedication until the project is complete.",
+    rating: 5,
+  },
+  {
+    name: "Basel A.",
+    role: "Landing Page Client — Khamsat",
+    text: "Very grateful for the result I got from working with Ali. Professional and meticulous work, delivered on time, with great patience for revisions. This definitely won't be our last collaboration.",
     rating: 5,
   },
   {
     name: "Bawabat A.",
     role: "Automation Client — Khamsat",
-    text: "I highly recommend working with him with full confidence, especially for anyone looking for someone who understands Google systems, automation, and data organization. This won't be our last collaboration.",
-    rating: 5,
-  },
-  {
-    name: "Ahmed G.",
-    role: "Landing Page Client — Khamsat",
-    text: "A very professional man who knows exactly what he's doing and how to benefit clients. Thank you!",
-    rating: 5,
-  },
-  {
-    name: "Abdulaziz S.",
-    role: "Landing Page Client — Khamsat",
-    text: "Excellent work and a service worth every penny. Very cooperative with revisions and I highly recommend working with him.",
+    text: "I recommend working with him with full confidence, especially for anyone looking for someone knowledgeable in Google systems, automation, and data organization. This won't be our last collaboration.",
     rating: 5,
   },
   {
     name: "Quraish H.",
     role: "Landing Page Client — Khamsat",
-    text: "Ali is absolutely outstanding — fast, incredibly responsive, and executes revisions with full professionalism. The landing page turned out beautiful and well-organized. Highly recommended!",
-    rating: 5,
-  },
-  {
-    name: "Bin Mohammed A.",
-    role: "Website Client — Khamsat",
-    text: "I worked with several developers before, but none were at the required level. Ali understood exactly what I needed, was patient and flexible, and delivered a result I can confidently run ad campaigns on. He's my go-to developer now.",
+    text: "Ali is absolutely outstanding — fast in his work, incredibly responsive, and executes revisions with full professionalism. The landing page turned out beautiful and well-organized. Highly recommended!",
     rating: 5,
   },
   {
@@ -211,18 +205,48 @@ const TESTIMONIALS = [
     rating: 5,
   },
   {
+    name: "Kaiss N.",
+    role: "Website Client — Khamsat",
+    text: "Excellent work. I highly recommend.",
+    rating: 5,
+  },
+  {
+    name: "Abdulaziz S.",
+    role: "Landing Page Client — Khamsat",
+    text: "Excellent work and a service worth having. Very cooperative with revisions and I highly recommend working with him.",
+    rating: 5,
+  },
+  {
     name: "Mishaal A.",
     role: "Landing Page Client — Khamsat",
     text: "Honestly, a hardworking person who understands his work and is truly professional. Anyone who wants professional work should go to him directly.",
     rating: 5,
   },
+  {
+    name: "Hertzfe Z.",
+    role: "Landing Page Client — Khamsat",
+    text: "A diligent and distinguished programmer capable of improving his performance on his own according to client requirements. I recommend him for quick turnaround and flexible collaboration.",
+    rating: 5,
+  },
+  {
+    name: "Adel A.",
+    role: "Repeat Client — Khamsat",
+    text: "This is not the first deal, nor the last. Impressive speed in response and work completion with zero errors. Thank you and much appreciated.",
+    rating: 5,
+  },
+  {
+    name: "Ahmed G.",
+    role: "Landing Page Client — Khamsat",
+    text: "A very professional man who knows exactly what he's doing and how to benefit clients.",
+    rating: 5,
+  },
 ];
 
 const WHY_ME = [
-  { icon: Zap, title: "Performance Obsessed", desc: "Every site I build scores 95+ on PageSpeed. Because slow sites lose clients." },
-  { icon: Target, title: "Pixel-Perfect", desc: "Design isn't approximated — it's replicated. Every spacing, every shadow, every detail matters." },
-  { icon: Clock, title: "Deadline Driven", desc: "I've never missed a deadline. When I say Friday, I mean Friday. No surprises." },
-  { icon: Shield, title: "Production-Ready", desc: "SEO, accessibility, responsive — built in from day one. Not add-ons, standards." },
+  { icon: Zap, title: "Performance Obsessed", desc: "Every site scores 95+ on PageSpeed with Next.js 16 + Tailwind CSS. Because slow sites lose clients." },
+  { icon: Target, title: "AI Integration", desc: "Exceptional skill in integrating AI (Google Gemini) inside web apps for smart, modern experiences." },
+  { icon: Clock, title: "Deadline Driven", desc: "100% completion rate. 17-min avg response time. When I say Friday, I mean Friday." },
+  { icon: Shield, title: "RTL & Accessibility", desc: "Specialized in Arabic/English bilingual UIs with Dark/Light mode and full accessibility compliance." },
 ];
 
 /* ───────── Animation Variants ───────── */
@@ -569,8 +593,8 @@ function Skills() {
             >
               <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
                 {category === "Frontend" && <Code2 className="w-4 h-4 text-primary" />}
-                {category === "Backend" && <Terminal className="w-4 h-4 text-primary" />}
-                {category === "Tools & Others" && <Palette className="w-4 h-4 text-primary" />}
+                {category === "Backend & DB" && <Terminal className="w-4 h-4 text-primary" />}
+                {category === "AI & Tools" && <Palette className="w-4 h-4 text-primary" />}
                 {category}
               </h3>
               <div className="flex flex-wrap gap-2">
