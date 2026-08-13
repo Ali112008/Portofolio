@@ -12,30 +12,67 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://portfolio-ochre-two-htckif7g99.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-ochre-two-htckif7g99.vercel.app"),
-  title: "Ali Mahmoud | Software Engineer Portfolio",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Ali Mahmoud | Software Engineer Portfolio",
+    template: "%s | Ali Mahmoud",
+  },
   description:
-    "Ali Mahmoud is a Software Engineer specializing in React, Next.js, and TypeScript. Building production-grade web applications with a focus on performance, accessibility, and seamless user experiences.",
+    "Ali Mahmoud — Software Engineer specializing in React, Next.js, and TypeScript. 15+ projects delivered, 800+ hours trained, 100% client satisfaction. Building production-grade web applications with performance, accessibility & AI integration.",
   keywords: [
     "Ali Mahmoud",
+    "Ali Mahmoud Developer",
+    "Ali Mahmoud Portfolio",
     "Software Engineer",
-    "React",
-    "Next.js",
-    "TypeScript",
     "Frontend Developer",
-    "Portfolio",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript Developer",
+    "Full Stack Developer",
+    "Web Developer Egypt",
+    "Freelance Developer",
+    "Khamsat Developer",
+    "React",
+    "Next.js 16",
+    "TypeScript",
+    "Tailwind CSS",
+    "Frontend Development",
     "Web Development",
+    "UI/UX Development",
     "Suez",
     "Egypt",
   ],
-  authors: [{ name: "Ali Mahmoud" }],
+  authors: [{ name: "Ali Mahmoud", url: SITE_URL }],
   creator: "Ali Mahmoud",
+  publisher: "Ali Mahmoud",
+  formatDetection: {
+    email: true,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "Ali Mahmoud | Software Engineer Portfolio",
     description:
-      "Software Engineer specializing in React, Next.js, and TypeScript. Building production-grade web applications.",
-    url: "https://alimahmoud-dev.vercel.app",
+      "Software Engineer specializing in React, Next.js & TypeScript. 15+ projects delivered with 100% client satisfaction. Performance-obsessed, AI-ready, bilingual.",
+    url: SITE_URL,
     siteName: "Ali Mahmoud Portfolio",
     type: "website",
     locale: "en_US",
@@ -45,6 +82,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Ali Mahmoud — Software Engineer Portfolio",
+        type: "image/png",
       },
     ],
   },
@@ -52,13 +90,26 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ali Mahmoud | Software Engineer Portfolio",
     description:
-      "Software Engineer specializing in React, Next.js, and TypeScript.",
-    images: ["/og-image.png"],
+      "Software Engineer specializing in React, Next.js & TypeScript. 15+ projects, 100% satisfaction, performance-obsessed.",
+    images: [
+      {
+        url: "/og-image.png",
+        alt: "Ali Mahmoud — Software Engineer Portfolio",
+      },
+    ],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  category: "portfolio",
 };
 
 export default function RootLayout({
@@ -68,6 +119,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#0a0a0b] text-white selection:bg-primary/20 selection:text-primary`}
       >

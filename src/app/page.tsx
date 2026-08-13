@@ -1190,8 +1190,36 @@ function Footer() {
 /* ───────── Main Page ───────── */
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Ali Mahmoud",
+    url: "https://portfolio-ochre-two-htckif7g99.vercel.app",
+    image: "https://portfolio-ochre-two-htckif7g99.vercel.app/og-image.png",
+    jobTitle: "Software Engineer",
+    description: "Software Engineer specializing in React, Next.js & TypeScript. 15+ projects delivered with 100% client satisfaction.",
+    email: "ali.mahmoud.developer@gmail.com",
+    sameAs: [
+      "https://github.com/Ali112008",
+      "https://linkedin.com/in/alimahmoud-dev",
+      "https://khamsat.com/user/ali_mahmmoud",
+    ],
+    knowsAbout: [
+      "React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js",
+      "Prisma ORM", "PostgreSQL", "Frontend Development", "Web Development",
+    ],
+    worksFor: {
+      "@type": "Organization",
+      name: "Freelance — Khamsat",
+    },
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
       <main className="flex-1">
         <Hero />
