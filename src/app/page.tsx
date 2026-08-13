@@ -37,8 +37,8 @@ import {
 const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Work", href: "#projects" },
-  { label: "Certs", href: "#certifications" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Certificates", href: "#certifications" },
+  { label: "Reviews", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
 
