@@ -26,6 +26,7 @@ import {
   Sparkles,
   CheckCircle2,
   Quote,
+  Globe,
 } from "lucide-react";
 
 /* ───────── Data ───────── */
@@ -168,21 +169,51 @@ const PROCESS_STEPS = [
 
 const TESTIMONIALS = [
   {
-    name: "WA TheQ Clinic",
-    role: "Healthcare Client",
-    text: "Ali delivered an exceptional landing page that exceeded our expectations. The attention to detail and performance optimization was outstanding.",
+    name: "Saleh A.",
+    role: "Landing Page Client — Khamsat",
+    text: "Very excellent work! Extremely fast response, fast delivery, and zero errors. Highly recommended for anyone who wants professional results.",
     rating: 5,
   },
   {
-    name: "UniStation",
-    role: "Education Platform",
-    text: "Working with Ali was seamless. He understood our vision immediately and delivered a pixel-perfect implementation on time.",
+    name: "Bawabat A.",
+    role: "Automation Client — Khamsat",
+    text: "I highly recommend working with him with full confidence, especially for anyone looking for someone who understands Google systems, automation, and data organization. This won't be our last collaboration.",
     rating: 5,
   },
   {
-    name: "ROUQY Studio",
-    role: "Interior Design Client",
-    text: "The animations and visual experience Ali created for our studio website truly captures the luxury feel we wanted. Incredible work.",
+    name: "Ahmed G.",
+    role: "Landing Page Client — Khamsat",
+    text: "A very professional man who knows exactly what he's doing and how to benefit clients. Thank you!",
+    rating: 5,
+  },
+  {
+    name: "Abdulaziz S.",
+    role: "Landing Page Client — Khamsat",
+    text: "Excellent work and a service worth every penny. Very cooperative with revisions and I highly recommend working with him.",
+    rating: 5,
+  },
+  {
+    name: "Quraish H.",
+    role: "Landing Page Client — Khamsat",
+    text: "Ali is absolutely outstanding — fast, incredibly responsive, and executes revisions with full professionalism. The landing page turned out beautiful and well-organized. Highly recommended!",
+    rating: 5,
+  },
+  {
+    name: "Bin Mohammed A.",
+    role: "Website Client — Khamsat",
+    text: "I worked with several developers before, but none were at the required level. Ali understood exactly what I needed, was patient and flexible, and delivered a result I can confidently run ad campaigns on. He's my go-to developer now.",
+    rating: 5,
+  },
+  {
+    name: "Falih A.",
+    role: "Website Client — Khamsat",
+    text: "I didn't expect to find someone this exceptionally professional on Khamsat. I recommend everyone to work with him — the design is pure imagination.",
+    rating: 5,
+  },
+  {
+    name: "Mishaal A.",
+    role: "Landing Page Client — Khamsat",
+    text: "Honestly, a hardworking person who understands his work and is truly professional. Anyone who wants professional work should go to him directly.",
     rating: 5,
   },
 ];
@@ -857,7 +888,8 @@ function Contact() {
           {[
             { icon: Mail, label: "Email", value: "ali.mahmoud.developer@gmail.com", href: "mailto:ali.mahmoud.developer@gmail.com" },
             { icon: Linkedin, label: "LinkedIn", value: "alimahmoud-dev", href: "https://linkedin.com/in/alimahmoud-dev" },
-            { icon: Github, label: "GitHub", value: "AliMahmoudDev", href: "https://github.com/Ali112008" },
+            { icon: Github, label: "GitHub", value: "Ali112008", href: "https://github.com/Ali112008" },
+            { icon: Globe, label: "Khamsat", value: "ali_mahmmoud", href: "https://khamsat.com/user/ali_mahmmoud" },
           ].map((item, i) => (
             <motion.a
               key={item.label}
@@ -894,6 +926,9 @@ function Footer() {
           </a>
           <a href="https://linkedin.com/in/alimahmoud-dev" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
             <Linkedin className="w-4 h-4" />
+          </a>
+          <a href="https://khamsat.com/user/ali_mahmmoud" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
+            <Globe className="w-4 h-4" />
           </a>
           <a href="mailto:ali.mahmoud.developer@gmail.com" className="text-muted-foreground hover:text-white transition-colors">
             <Mail className="w-4 h-4" />
