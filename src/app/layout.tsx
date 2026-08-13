@@ -126,6 +126,7 @@ export default function RootLayout({
       <head>
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="preload" href="/profile.jpg" as="image" type="image/jpeg" />
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#0a0a0b] text-white selection:bg-primary/20 selection:text-primary`}

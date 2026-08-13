@@ -1169,16 +1169,16 @@ function Footer() {
           Designed & Built by <span className="text-muted">Ali Mahmoud</span> · {new Date().getFullYear()}
         </p>
         <div className="flex items-center gap-4">
-          <a href="https://github.com/Ali112008" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
+          <a href="https://github.com/Ali112008" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="text-muted-foreground hover:text-white transition-colors">
             <Github className="w-4 h-4" />
           </a>
-          <a href="https://linkedin.com/in/alimahmoud-dev" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
+          <a href="https://linkedin.com/in/alimahmoud-dev" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="text-muted-foreground hover:text-white transition-colors">
             <Linkedin className="w-4 h-4" />
           </a>
-          <a href="https://khamsat.com/user/ali_mahmmoud" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
+          <a href="https://khamsat.com/user/ali_mahmmoud" target="_blank" rel="noopener noreferrer" aria-label="Khamsat profile" className="text-muted-foreground hover:text-white transition-colors">
             <Globe className="w-4 h-4" />
           </a>
-          <a href="mailto:ali.mahmoud.developer@gmail.com" className="text-muted-foreground hover:text-white transition-colors">
+          <a href="mailto:ali.mahmoud.developer@gmail.com" aria-label="Email Ali Mahmoud" className="text-muted-foreground hover:text-white transition-colors">
             <Mail className="w-4 h-4" />
           </a>
         </div>
