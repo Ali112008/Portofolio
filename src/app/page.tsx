@@ -871,6 +871,20 @@ function Testimonials() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Verified badge */}
+        <div className="mt-8 flex justify-center">
+          <a
+            href="https://khamsat.com/user/ali_mahmmoud"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors duration-200"
+          >
+            <CheckCircle2 className="w-3.5 h-3.5" />
+            <span>All reviews sourced from verified Khamsat transactions</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
       </div>
     </section>
   );
