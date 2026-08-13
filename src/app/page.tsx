@@ -55,10 +55,20 @@ const PROJECTS = [
     description: "A premium luxury interior design studio website showcasing elegant projects with immersive 3D-like animations, smooth transitions, and a refined visual experience that drives client engagement.",
     results: "40% increase in client inquiries after launch",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP"],
-    live: "https://rouqy.vercel.app",
-    github: "https://github.com/AliMahmoudDev/rouqy",
+    live: "https://rouqy.com",
     year: "2025",
     type: "Freelance — Design & Engineering",
+    featured: true,
+  },
+  {
+    title: "CleanDays",
+    subtitle: "Professional Cleaning Services Platform",
+    description: "A full-service cleaning company website for the Riyadh market — featuring service booking, price calculator, bilingual RTL/LTR support, and WhatsApp integration for instant customer communication.",
+    results: "Live business platform serving Riyadh region",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "RTL/Arabic"],
+    live: "https://cleandays.com.sa",
+    year: "2025",
+    type: "Freelance — Business & Engineering",
     featured: true,
   },
   {
@@ -68,7 +78,6 @@ const PROJECTS = [
     results: "Multi-language AI platform serving MENA region",
     tech: ["Next.js", "TypeScript", "Prisma", "Tailwind CSS", "AI/ML"],
     live: "https://shifa-five.vercel.app",
-    github: "https://github.com/AliMahmoudDev/shifa",
     year: "2025",
     type: "Full-Stack Application",
     featured: true,
@@ -79,23 +88,10 @@ const PROJECTS = [
     description: "A comprehensive educational platform built with Next.js and Webflow CMS integration, providing students with access to courses, resources, and interactive learning tools.",
     results: "Seamless CMS-powered learning experience",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Webflow CMS"],
-    live: "https://unistation-website.vercel.app",
-    github: "https://github.com/AliMahmoudDev/unistation-website",
+    live: "https://unistation.org",
     year: "2025",
     type: "Web Application",
     featured: true,
-  },
-  {
-    title: "CineTrack",
-    subtitle: "Movie Discovery App",
-    description: "A sleek movie discovery and tracking application powered by the TMDB API. Features personalized watchlists, trending movies, and cinematic UI.",
-    results: "Intuitive discovery with zero-load transitions",
-    tech: ["Next.js", "TypeScript", "TMDB API", "Tailwind CSS"],
-    live: "https://watch-to-end.vercel.app",
-    github: "https://github.com/AliMahmoudDev/watch-to-end",
-    year: "2025",
-    type: "API-Driven Application",
-    featured: false,
   },
   {
     title: "Mind Mate",
@@ -104,7 +100,6 @@ const PROJECTS = [
     results: "AI-driven wellness with personalized insights",
     tech: ["Next.js", "TypeScript", "AI", "Tailwind CSS"],
     live: "https://mind-mate-kappa-eight.vercel.app",
-    github: "https://github.com/AliMahmoudDev/mind-mate",
     year: "2025",
     type: "AI-Powered Application",
     featured: false,
@@ -116,7 +111,6 @@ const PROJECTS = [
     results: "Streamlined open-source contribution flow",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
     live: "https://algora-io.vercel.app",
-    github: "https://github.com/AliMahmoudDev/algora",
     year: "2025",
     type: "Platform",
     featured: false,
@@ -736,16 +730,6 @@ function ProjectCard({ project, index }: { project: (typeof PROJECTS)[0]; index:
               className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-primary-light transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" /> Live Demo
-            </a>
-          )}
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-white transition-colors"
-            >
-              <Github className="w-3.5 h-3.5" /> Source
             </a>
           )}
         </div>
