@@ -354,19 +354,19 @@ function Navbar() {
         </a>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-muted hover:text-white transition-colors duration-200"
+              className="relative text-sm text-muted-foreground hover:text-white px-3 py-2 rounded-lg transition-colors duration-200 hover:bg-white/5"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="text-sm px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-light transition-all duration-200 shadow-lg shadow-primary/20"
+            className="ml-3 text-sm px-5 py-2 rounded-full bg-primary text-white font-semibold hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg shadow-primary/25"
           >
             Hire Me
           </a>
@@ -379,9 +379,9 @@ function Navbar() {
           aria-label="Toggle menu"
         >
           <div className="w-5 h-4 flex flex-col justify-between">
-            <span className={`block h-0.5 bg-current transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-1.5" : ""}`} />
-            <span className={`block h-0.5 bg-current transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block h-0.5 bg-current transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+            <span className={`block h-0.5 bg-current transition-all duration-300 origin-left ${mobileOpen ? "rotate-45 translate-y-0.5" : ""}`} />
+            <span className={`block h-0.5 bg-current transition-all duration-300 ${mobileOpen ? "opacity-0 scale-x-0" : ""}`} />
+            <span className={`block h-0.5 bg-current transition-all duration-300 origin-left ${mobileOpen ? "-rotate-45 -translate-y-0.5" : ""}`} />
           </div>
         </button>
       </div>
@@ -395,13 +395,13 @@ function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-[#0a0a0b]/95 backdrop-blur-xl border-b border-border overflow-hidden"
           >
-            <div className="px-6 py-4 flex flex-col gap-3">
+            <div className="px-6 py-4 flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm text-muted hover:text-white py-2 transition-colors"
+                  className="text-sm text-muted-foreground hover:text-white hover:bg-white/5 py-2.5 px-3 rounded-lg transition-colors"
                 >
                   {link.label}
                 </a>
@@ -409,7 +409,7 @@ function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
-                className="text-sm px-5 py-2.5 rounded-lg bg-primary text-white font-medium text-center mt-2"
+                className="text-sm px-5 py-2.5 rounded-full bg-primary text-white font-semibold text-center mt-2 shadow-lg shadow-primary/25"
               >
                 Hire Me
               </a>
