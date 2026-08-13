@@ -247,7 +247,7 @@ const TESTIMONIALS = [
 
 const WHY_ME = [
   { icon: Zap, title: "Performance Obsessed", desc: "95%+ Lighthouse scores for SEO, performance & accessibility. Every site I ship is fast by default." },
-  { icon: Target, title: "10+ Projects Delivered", desc: "From landing pages to full E-commerce platforms with real-time state management and dynamic filtering." },
+  { icon: Target, title: "15+ Projects Delivered", desc: "From landing pages to full E-commerce platforms with real-time state management and dynamic filtering." },
   { icon: Clock, title: "800+ Hours Trained", desc: "Harvard CS50, 84hr React bootcamp, 42hr Node.js bootcamp, 130hr Front-End Diploma — and counting." },
   { icon: Shield, title: "AI & Bilingual", desc: "Google Gemini AI integration + Arabic/English RTL UIs with Dark/Light mode and full accessibility." },
 ];
