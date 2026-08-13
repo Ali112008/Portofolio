@@ -56,6 +56,7 @@ const PROJECTS = [
     results: "40% increase in client inquiries after launch",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP"],
     live: "https://rouqy.com",
+    image: "/projects/rouqy.jpg",
     year: "2025",
     type: "Freelance — Design & Engineering",
     featured: true,
@@ -67,6 +68,7 @@ const PROJECTS = [
     results: "Live business platform serving Riyadh region",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "RTL/Arabic"],
     live: "https://cleandays.com.sa",
+    image: "/projects/cleandays.jpg",
     year: "2025",
     type: "Freelance — Business & Engineering",
     featured: true,
@@ -78,6 +80,7 @@ const PROJECTS = [
     results: "Multi-language AI platform serving MENA region",
     tech: ["Next.js", "TypeScript", "Prisma", "Tailwind CSS", "AI/ML"],
     live: "https://shifa-five.vercel.app",
+    image: "/projects/shifa.jpg",
     year: "2025",
     type: "Full-Stack Application",
     featured: true,
@@ -89,6 +92,7 @@ const PROJECTS = [
     results: "Seamless CMS-powered learning experience",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Webflow CMS"],
     live: "https://unistation.org",
+    image: "/projects/unistation.jpg",
     year: "2025",
     type: "Web Application",
     featured: true,
@@ -100,6 +104,7 @@ const PROJECTS = [
     results: "AI-driven wellness with personalized insights",
     tech: ["Next.js", "TypeScript", "AI", "Tailwind CSS"],
     live: "https://mind-mate-kappa-eight.vercel.app",
+    image: "/projects/mind-mate.jpg",
     year: "2025",
     type: "AI-Powered Application",
     featured: false,
@@ -111,6 +116,7 @@ const PROJECTS = [
     results: "Streamlined open-source contribution flow",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
     live: "https://algora-io.vercel.app",
+    image: "/projects/algora.jpg",
     year: "2025",
     type: "Platform",
     featured: false,
@@ -685,13 +691,24 @@ function ProjectCard({ project, index }: { project: (typeof PROJECTS)[0]; index:
       className="group rounded-xl border border-border bg-surface overflow-hidden hover:border-primary/30 transition-all duration-300"
     >
       {/* Project preview */}
-      <div className="relative h-48 bg-gradient-to-br from-primary/5 to-accent/5 border-b border-border flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(99,102,241,0.1)_0%,transparent_50%)]" />
-        <span className="text-4xl font-bold tracking-tighter text-primary/20 group-hover:text-primary/30 transition-colors">
-          {project.title}
-        </span>
+      <div className="relative h-48 bg-surface border-b border-border overflow-hidden">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
+            <span className="text-4xl font-bold tracking-tighter text-primary/20 group-hover:text-primary/30 transition-colors">
+              {project.title}
+            </span>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
         {project.featured && (
-          <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] px-2 py-1 rounded-md bg-primary/10 text-primary border border-primary/20">
+          <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] px-2 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm">
             <Star className="w-3 h-3" /> Featured
           </span>
         )}
