@@ -226,7 +226,7 @@ const TESTIMONIALS = [
     rating: 5,
   },
   {
-    name: "Hertzfe Z.",
+    name: "Nihal",
     role: "Landing Page Client — Khamsat",
     text: "A diligent and distinguished programmer capable of improving his performance on his own according to client requirements. I recommend him for quick turnaround and flexible collaboration.",
     rating: 5,
@@ -861,14 +861,9 @@ function Testimonials() {
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">&ldquo;{t.text}&rdquo;</p>
 
               {/* Author footer — pushed to bottom */}
-              <div className="flex items-center gap-3 mt-4 pt-3 border-t border-border/50">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center text-primary font-bold text-xs shrink-0 ring-2 ring-primary/10">
-                  {t.name.charAt(0)}
-                </div>
-                <div className="min-w-0">
-                  <div className="text-sm font-semibold truncate">{t.name}</div>
-                  <div className="text-[11px] text-muted truncate">{t.role}</div>
-                </div>
+              <div className="mt-4 pt-3 border-t border-border/50">
+                <div className="text-sm font-semibold">{t.name}</div>
+                <div className="text-[11px] text-muted">{t.role}</div>
               </div>
 
               {/* Hover glow effect */}
