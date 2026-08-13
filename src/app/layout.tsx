@@ -13,6 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio-ochre-two-htckif7g99.vercel.app"),
   title: "Ali Mahmoud | Software Engineer Portfolio",
   description:
     "Ali Mahmoud is a Software Engineer specializing in React, Next.js, and TypeScript. Building production-grade web applications with a focus on performance, accessibility, and seamless user experiences.",
@@ -38,12 +39,21 @@ export const metadata: Metadata = {
     siteName: "Ali Mahmoud Portfolio",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ali Mahmoud — Software Engineer Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ali Mahmoud | Software Engineer Portfolio",
     description:
       "Software Engineer specializing in React, Next.js, and TypeScript.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
