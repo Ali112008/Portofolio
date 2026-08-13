@@ -1194,10 +1194,10 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Ali Mahmoud",
-    url: "https://portfolio-ochre-two-htckif7g99.vercel.app",
-    image: "https://portfolio-ochre-two-htckif7g99.vercel.app/og-image.png",
-    jobTitle: "Software Engineer",
-    description: "Software Engineer specializing in React, Next.js & TypeScript. 15+ projects delivered with 100% client satisfaction.",
+    url: "https://alimahmoud-dev.vercel.app",
+    image: "https://alimahmoud-dev.vercel.app/og-image.png",
+    jobTitle: "Software Engineer & Front-End Developer",
+    description: "Software Engineer & Front-End Developer specializing in React, Next.js & TypeScript. 15+ projects delivered with 100% client satisfaction.",
     email: "ali.mahmoud.developer@gmail.com",
     sameAs: [
       "https://github.com/Ali112008",
@@ -1207,6 +1207,7 @@ export default function Home() {
     knowsAbout: [
       "React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js",
       "Prisma ORM", "PostgreSQL", "Frontend Development", "Web Development",
+      "Software Engineering", "UI/UX Development", "Framer Motion",
     ],
     worksFor: {
       "@type": "Organization",

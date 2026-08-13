@@ -12,28 +12,32 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://portfolio-ochre-two-htckif7g99.vercel.app";
+const SITE_URL = "https://alimahmoud-dev.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Ali Mahmoud | Software Engineer Portfolio",
+    default: "Ali Mahmoud — Software Engineer & Front-End Developer",
     template: "%s | Ali Mahmoud",
   },
   description:
-    "Ali Mahmoud — Software Engineer specializing in React, Next.js, and TypeScript. 15+ projects delivered, 800+ hours trained, 100% client satisfaction. Building production-grade web applications with performance, accessibility & AI integration.",
+    "Ali Mahmoud — Software Engineer & Front-End Developer specializing in React, Next.js, and TypeScript. 15+ projects delivered, 800+ hours trained, 100% client satisfaction. Building production-grade web applications with performance, accessibility & AI integration.",
   keywords: [
+    "Software Engineer",
+    "Front-End Developer",
     "Ali Mahmoud",
+    "Ali Mahmoud Software Engineer",
+    "Ali Mahmoud Front-End Developer",
     "Ali Mahmoud Developer",
     "Ali Mahmoud Portfolio",
-    "Software Engineer",
     "Frontend Developer",
     "React Developer",
     "Next.js Developer",
     "TypeScript Developer",
     "Full Stack Developer",
     "Web Developer Egypt",
-    "Freelance Developer",
+    "Freelance Software Engineer",
+    "Freelance Front-End Developer",
     "Khamsat Developer",
     "React",
     "Next.js 16",
@@ -69,9 +73,9 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Ali Mahmoud | Software Engineer Portfolio",
+    title: "Ali Mahmoud — Software Engineer & Front-End Developer",
     description:
-      "Software Engineer specializing in React, Next.js & TypeScript. 15+ projects delivered with 100% client satisfaction. Performance-obsessed, AI-ready, bilingual.",
+      "Software Engineer & Front-End Developer specializing in React, Next.js & TypeScript. 15+ projects delivered with 100% client satisfaction. Performance-obsessed, AI-ready, bilingual.",
     url: SITE_URL,
     siteName: "Ali Mahmoud Portfolio",
     type: "website",
@@ -81,20 +85,20 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ali Mahmoud — Software Engineer Portfolio",
+        alt: "Ali Mahmoud — Software Engineer & Front-End Developer",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ali Mahmoud | Software Engineer Portfolio",
+    title: "Ali Mahmoud — Software Engineer & Front-End Developer",
     description:
-      "Software Engineer specializing in React, Next.js & TypeScript. 15+ projects, 100% satisfaction, performance-obsessed.",
+      "Software Engineer & Front-End Developer specializing in React, Next.js & TypeScript. 15+ projects, 100% satisfaction.",
     images: [
       {
         url: "/og-image.png",
-        alt: "Ali Mahmoud — Software Engineer Portfolio",
+        alt: "Ali Mahmoud — Software Engineer & Front-End Developer",
       },
     ],
   },

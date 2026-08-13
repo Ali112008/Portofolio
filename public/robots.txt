@@ -19,4 +19,4 @@ User-agent: *
 Allow: /
 Crawl-delay: 1
 
-Sitemap: https://portfolio-ochre-two-htckif7g99.vercel.app/sitemap.xml
+Sitemap: https://alimahmoud-dev.vercel.app/sitemap.xml
