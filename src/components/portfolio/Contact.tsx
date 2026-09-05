@@ -107,6 +107,8 @@ export function Contact() {
         }),
       });
       const data = await res.json().catch(() => null);
+      // Helpful diagnostic in the browser console (open DevTools → Console)
+      console.info("[contact] Web3Forms response:", data);
 
       if (res.ok && data?.success) {
         setStatus("sent");
