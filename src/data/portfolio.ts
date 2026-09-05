@@ -534,3 +534,7 @@ export const SOCIALS = {
   github: "https://github.com/Ali112008",
   khamsat: "https://khamsat.com/user/ali_mahmmoud",
 };
+
+/* Web3Forms public access key — safe to use in client-side code (it only
+   routes form submissions to the verified inbox). Free 250/mo. */
+export const WEB3FORMS_ACCESS_KEY = "e392e032-ce29-4485-b689-d741fb88c985";

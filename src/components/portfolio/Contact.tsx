@@ -15,7 +15,7 @@ import {
   Copy,
   Check,
 } from "lucide-react";
-import { SOCIALS } from "@/data/portfolio";
+import { SOCIALS, WEB3FORMS_ACCESS_KEY } from "@/data/portfolio";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
@@ -30,8 +30,8 @@ const contactSchema = z.object({
     .string()
     .min(10, "Tell me a bit more — at least 10 characters")
     .max(2000, "Message is too long (max 2000 characters)"),
-  /* honeypot — must stay empty */
-  company: z.string().max(0).optional(),
+  /* honeypot (Web3Forms calls it "botcheck") — must stay empty; filled = bot */
+  company: z.string().optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -65,36 +65,72 @@ export function Contact() {
 
   const onSubmit = async (values: ContactFormValues) => {
     setStatus("sending");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      const data = await res.json();
 
-      if (res.ok) {
-        setStatus("sent");
-        reset();
-        if (data?.delivered) {
-          // Real email was sent server-side — nothing more for the visitor to do.
-          setSentMsg(
-            "Message sent successfully! I'll get back to you within a few hours."
-          );
-        } else if (data?.mailto) {
-          // No email service configured: open the visitor's mail client with
-          // the message pre-filled as a fallback.
-          setSentMsg(
-            "Almost done — your email app should open with the message ready. Just press Send, and I'll receive it."
-          );
-          window.location.assign(data.mailto);
-        }
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
+    // Honeypot tripped by a bot — pretend success and drop silently.
+    if (values.company && values.company.length > 0) {
+      setStatus("sent");
+      setSentMsg(
+        "Message sent successfully! I'll get back to you within a few hours."
+      );
+      reset();
+      return;
     }
+
+    const subject = `New project inquiry from ${values.name}`;
+    const bodyText = [
+      `Name: ${values.name}`,
+      `Email: ${values.email}`,
+      values.budget ? `Budget: ${values.budget}` : null,
+      "",
+      "Message:",
+      values.message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    // Primary: send straight to Web3Forms from the browser (the public key is
+    // safe client-side; Web3Forms delivers to the verified inbox).
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: values.name,
+          email: values.email,
+          subject,
+          message: bodyText,
+          botcheck: values.company ?? "", // honeypot
+        }),
+      });
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.success) {
+        setStatus("sent");
+        setSentMsg(
+          "Message sent successfully! I'll get back to you within a few hours."
+        );
+        reset();
+        return;
+      }
+      // fall through to mailto if Web3Forms reports failure
+    } catch {
+      // network/blocked — fall through to mailto
+    }
+
+    // Fallback: open the visitor's email app with everything pre-filled.
+    setStatus("sent");
+    setSentMsg(
+      "Almost done — your email app should open with the message ready. Just press Send, and I'll receive it."
+    );
+    const mailto = `mailto:${SOCIALS.email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(bodyText)}`;
+    window.location.assign(mailto);
+    reset();
   };
 
   const copyEmail = async () => {
