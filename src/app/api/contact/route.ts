@@ -4,10 +4,12 @@ import { z } from "zod";
 /**
  * Contact form endpoint.
  *
- * Delivery strategy (in order):
- *  1. If RESEND_API_KEY is set → send a real email via Resend.
- *  2. Otherwise → return 200 with a `mailto:` link so the visitor's
- *     own email client delivers the message (works with zero config).
+ * Delivery strategy (first one configured wins):
+ *  1. RESEND_API_KEY        → send via Resend (https://resend.com)
+ *  2. WEB3FORMS_ACCESS_KEY  → send via Web3Forms (https://web3forms.com,
+ *                             free, no domain verification needed)
+ *  3. Neither set           → return 200 with a `mailto:` link so the
+ *                             visitor's own email client delivers the message.
  *
  * Spam protection: zod validation + honeypot field + in-memory rate limit.
  */
@@ -17,7 +19,8 @@ const contactSchema = z.object({
   email: z.string().email(),
   budget: z.string().max(40).optional(),
   message: z.string().min(10).max(2000),
-  company: z.string().max(0).optional(), // honeypot
+  // Honeypot — accept anything; a filled value is silently dropped below.
+  company: z.string().optional(),
 });
 
 const OWNER_EMAIL = process.env.CONTACT_EMAIL ?? "ali.mahmoud.developer@gmail.com";
@@ -99,10 +102,33 @@ export async function POST(request: Request) {
       if (res.ok) {
         return NextResponse.json({ ok: true, delivered: true });
       }
+      // fall through to Web3Forms / mailto on failure
+    }
+
+    /* 2) Web3Forms delivery (free, no domain verification) */
+    const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY;
+    if (web3formsKey) {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: web3formsKey,
+          subject,
+          from_name: name,
+          email, // sender's address; Web3Forms sets reply-to automatically
+          to_email: OWNER_EMAIL,
+          botcheck: company ?? "", // honeypot
+          message: bodyText,
+        }),
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok && data?.success) {
+        return NextResponse.json({ ok: true, delivered: true });
+      }
       // fall through to mailto on failure
     }
 
-    /* 2) Zero-config mailto fallback */
+    /* 3) Zero-config mailto fallback */
     const mailto = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(bodyText)}`;
