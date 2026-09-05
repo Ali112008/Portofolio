@@ -5,11 +5,10 @@ import { z } from "zod";
  * Contact form endpoint.
  *
  * Delivery strategy (first one that works wins):
- *  1. FormSubmit  → NO KEY needed. Sends straight to OWNER_EMAIL.
- *                   Requires a one-time activation: after the very first
- *                   submission, FormSubmit emails OWNER_EMAIL a confirmation
- *                   link — click it once and every later message arrives.
- *  2. Web3Forms   → if WEB3FORMS_ACCESS_KEY is set (free 250/mo).
+ *  1. Web3Forms  → pre-configured with a public access key (free 250/mo,
+ *                  no domain verification). Override via WEB3FORMS_ACCESS_KEY.
+ *  2. FormSubmit  → keyless backup that forwards to OWNER_EMAIL (needs a
+ *                  one-time activation click on the first live submission).
  *  3. Resend      → if RESEND_API_KEY is set.
  *  4. mailto:     → last resort: open the visitor's own email client.
  *
@@ -27,6 +26,13 @@ const contactSchema = z.object({
 
 const OWNER_EMAIL =
   process.env.CONTACT_EMAIL ?? "ali.mahmoud.developer@gmail.com";
+
+/* Web3Forms public access key — safe to ship in client/server code (it only
+   routes form submissions to the verified email). Override with
+   WEB3FORMS_ACCESS_KEY if you ever swap forms/providers. */
+const WEB3FORMS_KEY =
+  process.env.WEB3FORMS_ACCESS_KEY ??
+  "e392e032-ce29-4485-b689-d741fb88c985";
 
 /* ── In-memory sliding-window rate limiter (per server instance) ── */
 const WINDOW_MS = 5 * 60_000; // 5 minutes
@@ -119,7 +125,20 @@ export async function POST(request: Request) {
       .filter(Boolean)
       .join("\n");
 
-    /* 1) FormSubmit — no key, sends straight to OWNER_EMAIL */
+    /* 1) Web3Forms — free 250/mo, public access key (already configured) */
+    const w3 = await postJson("https://api.web3forms.com/submit", {
+      access_key: WEB3FORMS_KEY,
+      name,
+      email, // Web3Forms uses this as the reply-to address
+      subject,
+      message: bodyText,
+      botcheck: company ?? "", // honeypot; Web3Forms also filters spam
+    });
+    if (w3.ok && w3.data?.success) {
+      return NextResponse.json({ ok: true, delivered: true });
+    }
+
+    /* 2) FormSubmit — keyless backup that forwards to OWNER_EMAIL */
     const formSubmit = await postJson(
       `https://formsubmit.co/ajax/${OWNER_EMAIL}`,
       {
@@ -134,22 +153,6 @@ export async function POST(request: Request) {
     );
     if (formSubmit.ok && formSubmit.data?.success == true) {
       return NextResponse.json({ ok: true, delivered: true });
-    }
-
-    /* 2) Web3Forms — free 250/mo, no domain verification */
-    const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY;
-    if (web3formsKey) {
-      const w3 = await postJson("https://api.web3forms.com/submit", {
-        access_key: web3formsKey,
-        name,
-        email,
-        subject,
-        message: bodyText,
-        botcheck: company ?? "",
-      });
-      if (w3.ok && w3.data?.success) {
-        return NextResponse.json({ ok: true, delivered: true });
-      }
     }
 
     /* 3) Resend */
