@@ -32,7 +32,7 @@ export function Faq() {
                 value={`faq-${i}`}
                 className="px-5 sm:px-6 border-0"
               >
-                <AccordionTrigger className="text-left text-sm sm:text-base font-medium hover:no-underline py-5 [&[data-state=open]>svg]:text-primary">
+                <AccordionTrigger className="cursor-pointer text-left text-sm sm:text-base font-medium hover:no-underline py-5 [&[data-state=open]>svg]:text-primary">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-sm text-muted leading-relaxed pb-5">
