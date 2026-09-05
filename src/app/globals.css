@@ -10,8 +10,11 @@
   --color-border: #27272a;
   --color-muted: #a1a1aa;
   --color-muted-foreground: #91919a;
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+  /* System font stacks — zero network requests, instant render */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono",
+    Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 /* Smooth scrolling */
