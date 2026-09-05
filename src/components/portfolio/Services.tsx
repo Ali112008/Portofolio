@@ -31,7 +31,7 @@ export function Services() {
         <SectionHeading
           label="Services"
           title="What I Can Build For You"
-          subtitle="Fixed-scope packages with transparent starting prices. You'll know the cost and timeline before we start — no surprises."
+          subtitle="Every project is scoped to your goals and budget. Tell me what you need — you'll get a free, no-obligation quote with a clear timeline before we start."
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -75,25 +75,14 @@ export function Services() {
                     ))}
                   </ul>
 
-                  <div className="flex items-end justify-between pt-5 border-t border-border">
-                    <div>
-                      <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">
-                        Starting at
-                      </span>
-                      <span className="text-2xl font-bold tracking-tight">
-                        ${service.startingPrice}
-                        <span className="text-xs font-normal text-muted-foreground ml-1">
-                          USD
-                        </span>
-                      </span>
-                    </div>
+                  <div className="pt-5 border-t border-border">
                     <a
                       href="#contact"
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary-light transition-colors group/link"
-                      aria-label={`Get a quote for ${service.title}`}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2.5 text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary hover:text-white hover:border-primary"
+                      aria-label={`Get a free quote for ${service.title}`}
                     >
-                      Get a quote
-                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
+                      Get a Free Quote
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </a>
                   </div>
                 </div>

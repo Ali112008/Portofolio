@@ -241,7 +241,6 @@ export type Service = {
   icon: string;
   title: string;
   description: string;
-  startingPrice: number;
   features: string[];
   popular?: boolean;
 };
@@ -252,7 +251,6 @@ export const SERVICES: Service[] = [
     title: "Landing Pages",
     description:
       "High-converting, lightning-fast landing pages engineered to turn ad traffic into paying customers — complete with analytics-ready structure.",
-    startingPrice: 150,
     features: [
       "Pixel-perfect responsive design",
       "90+ PageSpeed score guaranteed",
@@ -266,7 +264,6 @@ export const SERVICES: Service[] = [
     title: "Business Websites",
     description:
       "Full business websites with multiple pages, bilingual Arabic/English RTL support, and a polished presence that makes your brand impossible to ignore.",
-    startingPrice: 400,
     popular: true,
     features: [
       "Up to 8 custom pages",
@@ -281,7 +278,6 @@ export const SERVICES: Service[] = [
     title: "E-Commerce Storefronts",
     description:
       "Conversion-focused online stores with product catalogs, filtering, cart, and checkout flows tuned for sales — built to scale on Black Friday traffic.",
-    startingPrice: 700,
     features: [
       "Product catalog & dynamic filtering",
       "Cart & checkout flows",
@@ -295,7 +291,6 @@ export const SERVICES: Service[] = [
     title: "Next.js Full-Stack Apps",
     description:
       "End-to-end web applications with databases, authentication, APIs, and admin dashboards — production architecture, not tutorial code.",
-    startingPrice: 1000,
     features: [
       "Prisma + PostgreSQL data layer",
       "JWT / NextAuth authentication",
@@ -309,7 +304,6 @@ export const SERVICES: Service[] = [
     title: "AI Integration",
     description:
       "Add intelligent features to your product — chat assistants, content generation, smart search — powered by Google Gemini and modern LLM APIs.",
-    startingPrice: 300,
     features: [
       "AI chat & assistants",
       "Content generation workflows",
@@ -323,7 +317,6 @@ export const SERVICES: Service[] = [
     title: "Performance & SEO Audits",
     description:
       "Already have a website? I'll audit Core Web Vitals, accessibility, and SEO — then fix what's costing you rankings and conversions.",
-    startingPrice: 100,
     features: [
       "Lighthouse / Core Web Vitals audit",
       "Image & bundle optimization",
@@ -344,7 +337,7 @@ export const FAQS = [
   {
     question: "How much does a website cost?",
     answer:
-      "Landing pages start at $150, business websites at $400, e-commerce storefronts at $700, and full-stack web applications at $1,000. Every quote is fixed-scope after a free discovery call — no hidden fees, no surprise invoices.",
+      "Every project is different, so I price each one after a short free discovery call where I understand exactly what you need. You'll always get a clear, fixed-scope quote with a timeline before we start — no hidden fees, no surprise invoices, and no obligation.",
   },
   {
     question: "Do you build bilingual Arabic/English websites?",
