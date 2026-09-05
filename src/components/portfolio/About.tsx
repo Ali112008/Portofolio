@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import {
   Zap,
   Target,
@@ -10,7 +8,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { WHY_ME } from "@/data/portfolio";
-import { SectionHeading, fadeUp, stagger } from "./SectionHeading";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
 const ICONS: Record<string, LucideIcon> = {
   Zap,
@@ -20,25 +19,13 @@ const ICONS: Record<string, LucideIcon> = {
 };
 
 export function About() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section id="about" className="section-padding">
       <div className="max-w-6xl mx-auto">
         <SectionHeading label="About Me" title="Why Work With Me" />
 
-        <motion.div
-          ref={ref}
-          variants={stagger}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 gap-12 items-start"
-        >
-          <motion.div
-            variants={fadeUp}
-            className="space-y-5 text-muted leading-relaxed"
-          >
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          <Reveal className="space-y-5 text-muted leading-relaxed">
             <p>
               I&apos;m a{" "}
               <span className="text-white font-medium">Frontend Developer</span>{" "}
@@ -62,29 +49,27 @@ export function About() {
               technologies, studying design trends, and pushing the boundaries
               of what&apos;s possible on the web.
             </p>
-          </motion.div>
+          </Reveal>
 
-          <motion.div
-            variants={fadeUp}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-          >
-            {WHY_ME.map((item) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {WHY_ME.map((item, i) => {
               const Icon = ICONS[item.icon] ?? Zap;
               return (
-                <div
-                  key={item.title}
-                  className="p-5 rounded-xl bg-surface border border-border hover:border-primary/30 transition-all duration-300 group"
-                >
-                  <Icon className="w-5 h-5 text-primary mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-sm font-semibold mb-1">{item.title}</div>
-                  <div className="text-xs text-muted leading-relaxed">
-                    {item.desc}
+                <Reveal key={item.title} delay={i * 80}>
+                  <div className="p-5 rounded-xl bg-surface border border-border hover:border-primary/30 transition-all duration-300 group h-full">
+                    <Icon className="w-5 h-5 text-primary mb-3 group-hover:scale-110 transition-transform" />
+                    <div className="text-sm font-semibold mb-1">
+                      {item.title}
+                    </div>
+                    <div className="text-xs text-muted leading-relaxed">
+                      {item.desc}
+                    </div>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

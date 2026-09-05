@@ -122,6 +122,28 @@ html {
   animation: marquee 32s linear infinite;
 }
 
+/* ── Bulletproof scroll reveal
+   Elements stay VISIBLE until JS hydrates and adds .motion-ready to <html>.
+   If JS fails/hydration breaks, .motion-ready is never added and content
+   remains fully visible (never stuck at opacity:0). ── */
+.reveal {
+  opacity: 1;
+}
+
+html.motion-ready .reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 28px));
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+html.motion-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Accessibility: visible keyboard focus ── */
 a:focus-visible,
 button:focus-visible,

@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -9,12 +7,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { FAQS } from "@/data/portfolio";
-import { SectionHeading, fadeUp } from "./SectionHeading";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
 export function Faq() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section id="faq" className="section-padding bg-surface/50">
       <div className="max-w-3xl mx-auto">
@@ -24,12 +20,7 @@ export function Faq() {
           subtitle="Everything you need to know before starting a project. Still curious about something? Ask me directly."
         />
 
-        <motion.div
-          ref={ref}
-          variants={fadeUp}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
+        <Reveal>
           <Accordion
             type="single"
             collapsible
@@ -61,7 +52,7 @@ export function Faq() {
             </a>{" "}
             — I usually reply within a few hours.
           </p>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

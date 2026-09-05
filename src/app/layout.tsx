@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -126,15 +125,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preload" href="/profile.jpg" as="image" type="image/jpeg" />
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-[#0a0a0b] text-white selection:bg-primary/20 selection:text-primary`}
       >
         {children}
-        <Toaster position="top-center" richColors closeButton />
       </body>
     </html>
   );

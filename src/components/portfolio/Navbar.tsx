@@ -120,10 +120,7 @@ export function Navbar() {
             >
               {link.label}
               {activeSection === link.href && (
-                <motion.span
-                  layoutId="nav-active"
-                  className="absolute inset-x-3 -bottom-px h-0.5 bg-primary rounded-full"
-                />
+                <span className="absolute inset-x-3 -bottom-px h-0.5 bg-primary rounded-full" />
               )}
             </a>
           ))}

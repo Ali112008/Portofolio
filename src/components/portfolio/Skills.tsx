@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import { Code2, Terminal, Palette } from "lucide-react";
 import { SKILLS, TECH_MARQUEE } from "@/data/portfolio";
-import { SectionHeading, fadeUp, stagger } from "./SectionHeading";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   Frontend: <Code2 className="w-4 h-4 text-primary" />,
@@ -13,9 +12,6 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
 };
 
 export function Skills() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section id="skills" className="section-padding bg-surface/50">
       <div className="max-w-6xl mx-auto">
@@ -25,37 +21,28 @@ export function Skills() {
           subtitle="The modern stack I use to build fast, scalable, and beautiful web applications."
         />
 
-        <motion.div
-          ref={ref}
-          variants={stagger}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-8"
-        >
+        <div className="grid md:grid-cols-3 gap-8">
           {Object.entries(SKILLS).map(([category, skills], catIdx) => (
-            <motion.div
-              key={category}
-              variants={fadeUp}
-              custom={catIdx}
-              className="p-6 rounded-xl bg-surface border border-border"
-            >
-              <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
-                {CATEGORY_ICONS[category]}
-                {category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-xs px-3 py-1.5 rounded-lg bg-surface-light border border-border text-muted hover:text-white hover:border-primary/30 transition-all duration-200 cursor-default"
-                  >
-                    {skill}
-                  </span>
-                ))}
+            <Reveal key={category} delay={catIdx * 100}>
+              <div className="p-6 rounded-xl bg-surface border border-border h-full">
+                <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
+                  {CATEGORY_ICONS[category]}
+                  {category}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="text-xs px-3 py-1.5 rounded-lg bg-surface-light border border-border text-muted hover:text-white hover:border-primary/30 transition-all duration-200 cursor-default"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Infinite tech marquee */}

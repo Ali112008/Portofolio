@@ -1,15 +1,14 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { Award, X, ZoomIn } from "lucide-react";
 import { CERTIFICATIONS } from "@/data/portfolio";
-import { SectionHeading, fadeUp, stagger } from "./SectionHeading";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
 export function Certifications() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [lightbox, setLightbox] = useState<{ src: string; title: string } | null>(
     null
   );
@@ -37,60 +36,53 @@ export function Certifications() {
           subtitle="800+ hours of structured learning from world-class institutions — not just tutorials, real computer science and engineering."
         />
 
-        <motion.div
-          ref={ref}
-          variants={stagger}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
-        >
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {CERTIFICATIONS.map((cert, i) => (
-            <motion.button
-              key={cert.title}
-              variants={fadeUp}
-              custom={i}
-              onClick={() => setLightbox({ src: cert.image, title: cert.title })}
-              className="group relative rounded-xl border border-border bg-surface overflow-hidden hover:border-primary/30 transition-all duration-300 text-left cursor-pointer"
-              aria-label={`View certificate: ${cert.title}`}
-            >
-              {/* Certificate image preview */}
-              <div className="relative h-32 overflow-hidden bg-surface-light">
-                <Image
-                  src={cert.image}
-                  alt={cert.title}
-                  fill
-                  loading="lazy"
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
-                {/* Zoom hint */}
-                <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="p-1.5 rounded-lg bg-primary/20 backdrop-blur-sm border border-primary/30">
-                    <ZoomIn className="w-3.5 h-3.5 text-primary" />
+            <Reveal key={cert.title} delay={(i % 4) * 80} className="flex">
+              <button
+                onClick={() => setLightbox({ src: cert.image, title: cert.title })}
+                className="group relative w-full rounded-xl border border-border bg-surface overflow-hidden hover:border-primary/30 transition-all duration-300 text-left cursor-pointer"
+                aria-label={`View certificate: ${cert.title}`}
+              >
+                {/* Certificate image preview */}
+                <div className="relative h-32 overflow-hidden bg-surface-light">
+                  <Image
+                    src={cert.image}
+                    alt={cert.title}
+                    fill
+                    loading="lazy"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/50 to-transparent" />
+                  {/* Zoom hint */}
+                  <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="p-1.5 rounded-lg bg-primary/20 backdrop-blur-sm border border-primary/30">
+                      <ZoomIn className="w-3.5 h-3.5 text-primary" />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="p-4 space-y-2">
-                <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-                  <Award className="w-3 h-3 text-primary" />
-                  <span>{cert.issuer}</span>
+                <div className="p-4 space-y-2">
+                  <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+                    <Award className="w-3 h-3 text-primary" />
+                    <span>{cert.issuer}</span>
+                  </div>
+                  <h3 className="text-sm font-semibold leading-tight group-hover:text-primary transition-colors line-clamp-2">
+                    {cert.title}
+                  </h3>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted font-mono">
+                      {cert.date}
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20">
+                      {cert.highlight}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-sm font-semibold leading-tight group-hover:text-primary transition-colors line-clamp-2">
-                  {cert.title}
-                </h3>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted font-mono">
-                    {cert.date}
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20">
-                    {cert.highlight}
-                  </span>
-                </div>
-              </div>
-            </motion.button>
+              </button>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* ── Lightbox Modal ── */}

@@ -1,27 +1,16 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { SOCIALS } from "@/data/portfolio";
-import { fadeUp } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
 export function CtaSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <section className="section-padding relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08)_0%,transparent_70%)]" />
 
-      <motion.div
-        ref={ref}
-        variants={fadeUp}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        className="max-w-3xl mx-auto text-center relative z-10"
-      >
+      <Reveal className="max-w-3xl mx-auto text-center relative z-10">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-5">
           Ready to Build Something{" "}
           <span className="gradient-text">Remarkable</span>?
@@ -46,7 +35,7 @@ export function CtaSection() {
             Email Me Directly
           </a>
         </div>
-      </motion.div>
+      </Reveal>
     </section>
   );
 }

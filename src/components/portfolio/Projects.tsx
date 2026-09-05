@@ -1,17 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Image from "next/image";
-import {
-  ExternalLink,
-  Star,
-  CheckCircle2,
-  Github,
-  FolderGit2,
-} from "lucide-react";
+import { ExternalLink, Star, CheckCircle2, Github, FolderGit2 } from "lucide-react";
 import { PROJECTS, type Project, type ProjectCategory } from "@/data/portfolio";
-import { SectionHeading, fadeUp, stagger } from "./SectionHeading";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
 const FILTERS: { label: string; value: ProjectCategory }[] = [
   { label: "All Projects", value: "All" },
@@ -21,20 +15,9 @@ const FILTERS: { label: string; value: ProjectCategory }[] = [
   { label: "Platforms", value: "Platform" },
 ];
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
-
+function ProjectCard({ project }: { project: Project }) {
   return (
-    <motion.article
-      ref={ref}
-      variants={fadeUp}
-      custom={index}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      layout
-      className="group rounded-xl border border-border bg-surface overflow-hidden hover:border-primary/30 transition-all duration-300 flex flex-col"
-    >
+    <article className="group rounded-xl border border-border bg-surface overflow-hidden hover:border-primary/30 transition-all duration-300 flex flex-col h-full">
       {/* Project preview */}
       <div className="relative h-48 bg-surface border-b border-border overflow-hidden">
         <Image
@@ -94,16 +77,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </a>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
 export function Projects() {
   const [filter, setFilter] = useState<ProjectCategory>("All");
   const filtered =
-    filter === "All"
-      ? PROJECTS
-      : PROJECTS.filter((p) => p.category === filter);
+    filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
 
   return (
     <section id="projects" className="section-padding">
@@ -115,7 +96,11 @@ export function Projects() {
         />
 
         {/* Filter tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10" role="tablist" aria-label="Filter projects">
+        <div
+          className="flex flex-wrap justify-center gap-2 mb-10"
+          role="tablist"
+          aria-label="Filter projects"
+        >
           {FILTERS.map((f) => (
             <button
               key={f.value}
@@ -133,22 +118,19 @@ export function Projects() {
           ))}
         </div>
 
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+        <div
+          key={filter}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((project, i) => (
-              <ProjectCard key={project.title} project={project} index={i} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+          {filtered.map((project, i) => (
+            <Reveal key={project.title} delay={(i % 3) * 90}>
+              <ProjectCard project={project} />
+            </Reveal>
+          ))}
+        </div>
 
         {/* GitHub CTA */}
-        <div className="mt-12 text-center">
+        <Reveal className="mt-12 text-center">
           <a
             href="https://github.com/Ali112008"
             target="_blank"
@@ -159,7 +141,7 @@ export function Projects() {
             See more code on GitHub
             <FolderGit2 className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

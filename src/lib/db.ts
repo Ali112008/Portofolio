@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 // Prisma client singleton (starter template).
 //
 // The generated Prisma client is created on install via `prisma generate`.
@@ -5,12 +6,9 @@
 // lazily requires the client on first use so the portfolio app — which does
 // not depend on a database — still type-checks, builds, and runs.
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const globalForPrisma = globalThis as unknown as { prisma?: any };
 
 function createClient(): any {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-
   const { PrismaClient } = require("@prisma/client");
   return new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["query"] : ["error"],
