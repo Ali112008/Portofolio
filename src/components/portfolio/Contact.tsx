@@ -51,6 +51,7 @@ export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  const [sentMsg, setSentMsg] = useState<string>("");
   const [copied, setCopied] = useState(false);
 
   const {
@@ -75,9 +76,17 @@ export function Contact() {
       if (res.ok) {
         setStatus("sent");
         reset();
-        /* If no email service is configured server-side, open the
-           visitor's mail client with the message pre-filled as a fallback. */
-        if (data?.mailto) {
+        if (data?.delivered) {
+          // Real email was sent server-side — nothing more for the visitor to do.
+          setSentMsg(
+            "Message sent successfully! I'll get back to you within a few hours."
+          );
+        } else if (data?.mailto) {
+          // No email service configured: open the visitor's mail client with
+          // the message pre-filled as a fallback.
+          setSentMsg(
+            "Almost done — your email app should open with the message ready. Just press Send, and I'll receive it."
+          );
           window.location.assign(data.mailto);
         }
       } else {
@@ -248,12 +257,14 @@ export function Contact() {
 
               {status === "sent" && (
                 <p
-                  className="flex items-center gap-2 text-sm text-emerald-400"
+                  className="flex items-start gap-2 text-sm text-emerald-400"
                   role="status"
                 >
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
-                  Thanks! Your message is ready — your email app should open to
-                  confirm it. I&apos;ll get back to you within a few hours.
+                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
+                  <span>
+                    {sentMsg ||
+                      "Thanks! I'll get back to you within a few hours."}
+                  </span>
                 </p>
               )}
               {status === "error" && (
