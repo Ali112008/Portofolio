@@ -47,6 +47,12 @@ const BUDGETS = [
 const inputClass =
   "w-full rounded-lg bg-surface-light border border-border px-4 py-2.5 text-sm text-white placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all";
 
+/* Contact form temporarily disabled while Web3Forms deliverability is being
+   sorted with their support (submissions return success but don't arrive —
+   usually a suppression-list / spam issue only they can clear). Flip to
+   `true` to bring the form back once a test email lands in the inbox. */
+const CONTACT_FORM_ENABLED = false;
+
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
@@ -88,23 +94,23 @@ export function Contact() {
       .filter(Boolean)
       .join("\n");
 
-    // Primary: send straight to Web3Forms from the browser (the public key is
-    // safe client-side; Web3Forms delivers to the verified inbox).
+    // Send to Web3Forms straight from the browser using FormData — exactly
+    // the format in Web3Forms' official React example (the public key is
+    // safe client-side; FormData is the most reliable, CORS-friendly path).
     try {
+      const formData = new FormData();
+      formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("subject", subject);
+      formData.append("message", bodyText);
+      formData.append("botcheck", values.company ?? ""); // honeypot
+
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          name: values.name,
-          email: values.email,
-          subject,
-          message: bodyText,
-          botcheck: values.company ?? "", // honeypot
-        }),
+        // NOTE: no Content-Type — the browser sets multipart/form-data itself
+        headers: { Accept: "application/json" },
+        body: formData,
       });
       const data = await res.json().catch(() => null);
       // Helpful diagnostic in the browser console (open DevTools → Console)
@@ -172,8 +178,52 @@ export function Contact() {
         />
 
         <div className="grid lg:grid-cols-5 gap-8">
-          {/* ── Contact form ── */}
+          {/* ── Contact form (or direct-contact card while disabled) ── */}
           <Reveal className="lg:col-span-3">
+            {!CONTACT_FORM_ENABLED ? (
+              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-surface h-full flex flex-col justify-center text-center sm:text-left">
+                <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 w-fit mb-5">
+                  <Mail className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">
+                  Let&apos;s talk about your project
+                </h3>
+                <p className="text-sm text-muted leading-relaxed mb-6">
+                  The quickest way to reach me is by email — I usually reply
+                  within a few hours. Prefer WhatsApp-style chat? My Khamsat
+                  inbox works too, or message me on LinkedIn.
+                </p>
+
+                <a
+                  href={`mailto:${SOCIALS.email}`}
+                  className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary-light transition-all duration-200 shadow-xl shadow-primary/25"
+                >
+                  <Send className="w-4 h-4" />
+                  Email me now
+                  <span className="hidden sm:inline text-xs font-normal opacity-80">
+                    {SOCIALS.email}
+                  </span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="mt-4 inline-flex w-full sm:w-auto items-center justify-center gap-2 px-7 py-3 rounded-xl border border-dashed border-border text-xs text-muted-foreground hover:text-white hover:border-primary/30 transition-all duration-200"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      Email copied to clipboard
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      Copy email address
+                    </>
+                  )}
+                </button>
+              </div>
+            ) : (
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="p-6 sm:p-8 rounded-2xl border border-border bg-surface space-y-5 h-full"
@@ -322,6 +372,7 @@ export function Contact() {
                 </p>
               )}
             </form>
+            )}
           </Reveal>
 
           {/* ── Direct channels ── */}
